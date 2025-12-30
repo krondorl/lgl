@@ -24,11 +24,13 @@ Mega Millions is an American multijurisdictional lottery game.
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd lottery-generator
+cd lgl
 
-# Build and install
+# Run
+cargo run
+
+# Build release
 cargo build --release
-cargo install --path .
 ```
 
 ### Prerequisites
@@ -136,7 +138,7 @@ rand_pcg = "0.3"      # PCG64 implementation
 
 ## License
 
-Please see (the license file)[LICENSE.md].
+Please see [the license file](LICENSE.md).
 
 ## Links
 
