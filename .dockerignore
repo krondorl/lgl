@@ -1,0 +1,94 @@
+# Rust build artifacts
+target/
+**/target/
+
+# Cargo lock file (include in production, exclude for library crates)
+# Cargo.lock
+
+# Debug symbols
+**/*.pdb
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+azure-pipelines.yml
+
+# Documentation
+*.md
+!README.md
+docs/
+examples/
+
+# Test files
+tests/
+**/tests/
+**/*_test.rs
+**/*_tests.rs
+
+# Backup files
+*.bak
+*.tmp
+*.temp
+*.orig
+
+# Output files
+*.txt
+*.log
+*.csv
+draws.txt
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Node.js (if you have any)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Python (if you have any)
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+env/
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Coverage reports
+coverage/
+*.profraw
+*.profdata
+
+# Benchmarks
+benches/
+
+# Local configuration
+.cargo/config.toml

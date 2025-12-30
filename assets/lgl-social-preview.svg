@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1280 640" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1.204693,0,0,1.204693,-146.12816,-49.551983)">
+        <g transform="matrix(1,0,0,1,79.807134,172.999999)">
+            <text x="483.193px" y="111.94px" style="font-family:'SegoeUI-BoldItalic', 'Segoe UI', sans-serif;font-weight:700;font-style:italic;font-size:144px;fill:rgb(64,191,124);">lgl</text>
+            <g transform="matrix(96,0,0,96,983.161616,239.627449)">
+            </g>
+            <text x="159.99px" y="239.627px" style="font-family:'SegoeUI-SemilightItalic', 'Segoe UI', sans-serif;font-weight:350;font-style:italic;font-size:96px;fill:rgb(74,74,74);">lotter<tspan x="373.177px 418.037px " y="239.627px 239.627px ">y </tspan>generator lite</text>
+        </g>
+        <g transform="matrix(1.087503,0,0,1.087503,329.69918,-30.992331)">
+            <g transform="matrix(1,0,0,1,-338.999999,-21.382812)">
+                <circle cx="479.576" cy="275.393" r="61.516" style="fill:rgb(51,123,204);"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-160.423709,-330.445311)">
+                <path d="M300.999,526.94L313.951,566.801L355.863,566.801L321.955,591.436L334.907,631.297L300.999,606.661L267.092,631.297L280.043,591.436L246.136,566.801L288.048,566.801L300.999,526.94Z" style="fill:white;"/>
+            </g>
+        </g>
+    </g>
+</svg>

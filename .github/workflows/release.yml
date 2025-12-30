@@ -1,0 +1,89 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers when you push a tag like v0.1.0
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Linux Intel
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            suffix: linux-x64
+          # Linux ARM (Native)
+          - os: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            suffix: linux-arm64
+          # macOS Intel
+          - os: macos-13
+            target: x86_64-apple-darwin
+            suffix: macos-x64
+          # macOS ARM (M1/M2/M3)
+          - os: macos-14
+            target: aarch64-apple-darwin
+            suffix: macos-arm64
+          # Windows Intel
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            suffix: windows-x64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Build Binary
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Prepare Assets (Rename & Checksum)
+        shell: bash
+        run: |
+          # 1. Define naming variables
+          TAG_NAME=${{ github.ref_name }}
+          REPO_NAME=${{ github.event.repository.name }}
+          BASE_NAME="${REPO_NAME}-${{ matrix.suffix }}-${TAG_NAME}"
+          
+          # 2. Handle Windows vs Unix file movements
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            BIN_PATH="target/${{ matrix.target }}/release/${REPO_NAME}.exe"
+            FINAL_BIN="${BASE_NAME}.exe"
+          else
+            BIN_PATH="target/${{ matrix.target }}/release/${REPO_NAME}"
+            FINAL_BIN="${BASE_NAME}"
+          fi
+
+          mv "$BIN_PATH" "./$FINAL_BIN"
+
+          # 3. Generate SHA-256 Checksum
+          if command -v sha256sum >/dev/null 2>&1; then
+            sha256sum "$FINAL_BIN" > "$FINAL_BIN.sha256"
+          else
+            shasum -a 256 "$FINAL_BIN" > "$FINAL_BIN.sha256"
+          fi
+
+          # 4. Pass paths to upload step
+          echo "ASSET_BIN=$FINAL_BIN" >> $GITHUB_ENV
+          echo "ASSET_SHA=$FINAL_BIN.sha256" >> $GITHUB_ENV
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ env.ASSET_BIN }}
+            ${{ env.ASSET_SHA }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

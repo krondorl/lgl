@@ -1,0 +1,25 @@
+[package]
+name = "lgl"
+version = "0.1.0"
+edition = "2024"
+authors = ["Adam Burucs"]
+description = "Lottery number generator with various options."
+license = "Source Available"
+repository = "https://github.com/krondorl/lgl"
+homepage = "https://github.com/krondorl/lgl"
+readme = "README.md"
+keywords = ["lottery", "random", "mega-millions", "powerball", "number-generator"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+anyhow = "1.0.100"
+clap = { version = "4.5.53", features = ["derive"] }
+rand = "0.9.2"
+rand_pcg = "0.9.0"
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Enable link-time optimization
+codegen-units = 1   # Reduce parallel code generation units for better optimization
+panic = "abort"     # Abort on panic instead of unwinding
+strip = true        # Strip symbols from binary
