@@ -19,6 +19,51 @@ Mega Millions is an American multijurisdictional lottery game.
 
 ## Installation
 
+### Download Binaries
+
+You can download [the binary file from the Releases section.](https://github.com/krondorl/lgl/releases)
+
+Choose a binary to download in browser or with `curl`.
+
+#### Linux
+
+```bash
+# download
+curl -L -o lgl https://example.com/path/to/binary
+
+# add running right
+chmod +x lgl
+
+# execute
+./lgl
+```
+
+#### macOS
+
+```bash
+# download
+curl -L -o lgl https://example.com/path/to/binary
+
+# add running right
+chmod +x lgl
+
+# remove quarantine
+xattr -d com.apple.quarantine lgl
+
+# execute
+./lgl
+```
+
+#### Windows
+
+```bash
+# download
+curl -L -o lgl https://example.com/path/to/binary
+
+# run
+.\lgl.exe
+```
+
 ### From Source
 
 ```bash
