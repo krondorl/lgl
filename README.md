@@ -70,6 +70,8 @@ curl -L -o lgl https://github.com/krondorl/lgl/releases/download/v0.1.0/lgl-wind
 .\lgl.exe
 ```
 
+**Note:** Always check [the latest binary files from the Releases section.](https://github.com/krondorl/lgl/releases)
+
 ### From Source
 
 ```bash
