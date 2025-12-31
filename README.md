@@ -74,7 +74,7 @@ curl -L -o lgl https://github.com/krondorl/lgl/releases/download/v0.1.0/lgl-wind
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/krondorl/lgl.git
 cd lgl
 
 # Run
