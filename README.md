@@ -29,7 +29,9 @@ Choose a binary to download in browser or with `curl`.
 
 ```bash
 # download
-curl -L -o lgl https://example.com/path/to/binary
+# always check for latest version and architecture at releases section
+# 0.1.0, 0.2.0, etc.
+curl -L -o lgl https://github.com/krondorl/lgl/releases/download/v0.1.0/lgl-linux-x64-v0.1.0
 
 # add running right
 chmod +x lgl
@@ -42,7 +44,9 @@ chmod +x lgl
 
 ```bash
 # download
-curl -L -o lgl https://example.com/path/to/binary
+# always check for latest version at releases section
+# 0.1.0, 0.2.0, etc.
+curl -L -o lgl https://github.com/krondorl/lgl/releases/download/v0.1.0/lgl-macos-arm64-v0.1.0
 
 # add running right
 chmod +x lgl
@@ -58,7 +62,9 @@ xattr -d com.apple.quarantine lgl
 
 ```bash
 # download
-curl -L -o lgl https://example.com/path/to/binary
+# always check for latest version at releases section
+# 0.1.0, 0.2.0, etc.
+curl -L -o lgl https://github.com/krondorl/lgl/releases/download/v0.1.0/lgl-windows-x64-v0.1.0.exe
 
 # run
 .\lgl.exe
