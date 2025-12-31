@@ -75,20 +75,20 @@ fn main() -> Result<()> {
 
     for _ in 0..args.count {
         let draw = generate_draw(&mut rng)?;
-        println!("{}", draw);
         draws.push(draw);
     }
 
+    let output = draws
+        .iter()
+        .map(|d| d.to_string())
+        .collect::<Vec<_>>()
+        .join("\n");
+
     if let Some(path) = args.path {
-        let output = draws
-            .iter()
-            .map(|d| d.to_string())
-            .collect::<Vec<_>>()
-            .join("\n");
-
         std::fs::write(&path, output).context(format!("Failed to write results to {:?}", path))?;
-
         println!("\nResults saved to: {:?}", path);
+    } else {
+        println!("\nGenerated Draws:\n{}", output);
     }
 
     Ok(())
