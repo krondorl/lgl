@@ -40,6 +40,17 @@ impl std::fmt::Display for Draw {
     }
 }
 
+fn print_info(cmd: clap::Command) {
+    let about = cmd.get_about().map(|s| s.to_string()).unwrap_or_default();
+    println!(
+        "{} {} — {}",
+        cmd.get_name(),
+        cmd.get_version().unwrap_or(""),
+        about
+    );
+    println!();
+}
+
 fn generate_draw(rng: &mut Pcg64) -> Result<Draw> {
     let mut white_balls: Vec<u8> = (1..=70).collect();
     white_balls.shuffle(rng);
@@ -57,39 +68,39 @@ fn generate_draw(rng: &mut Pcg64) -> Result<Draw> {
     })
 }
 
-fn main() -> Result<()> {
-    let args = Cli::parse();
-
-    let cmd = Cli::command();
-    let about = cmd.get_about().map(|s| s.to_string()).unwrap_or_default();
-    println!(
-        "{} {} — {}",
-        cmd.get_name(),
-        cmd.get_version().unwrap_or(""),
-        about
-    );
-    println!();
-
+fn push_draws(args: &Cli) -> Result<Vec<Draw>, anyhow::Error> {
     let mut rng = Pcg64::from_os_rng();
     let mut draws = Vec::new();
-
     for _ in 0..args.count {
         let draw = generate_draw(&mut rng)?;
         draws.push(draw);
     }
+    Ok(draws)
+}
 
+fn output_data(args: Cli, draws: Vec<Draw>) -> Result<(), Box<dyn std::error::Error>> {
     let output = draws
         .iter()
         .map(|d| d.to_string())
         .collect::<Vec<_>>()
         .join("\n");
-
     if let Some(path) = args.path {
         std::fs::write(&path, output).context(format!("Failed to write results to {:?}", path))?;
         println!("\nResults saved to: {:?}", path);
+        Ok(())
     } else {
         println!("\nGenerated Draws:\n{}", output);
+        Ok(())
     }
+}
+
+fn main() -> Result<()> {
+    let args = Cli::parse();
+    let cmd = Cli::command();
+
+    print_info(cmd);
+    let draws = push_draws(&args)?;
+    let _ = output_data(args, draws);
 
     Ok(())
 }
