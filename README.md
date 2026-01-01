@@ -58,7 +58,7 @@ xattr -d com.apple.quarantine lgl
 ./lgl
 ```
 
-#### Windows
+#### Windows (Powershell)
 
 ```bash
 # download
@@ -93,21 +93,43 @@ cargo build --release
 
 ## Usage
 
+### Linux and macOS
+
 ```bash
 # Generate a single draw (default)
-lgl
+./lgl
 
 # Generate 10 draws
-lgl 10
+./lgl 10
 
 # Generate 5 draws and save to file
-lgl 5 draws.txt
+./lgl 5 draws.txt
 
 # View help
-lgl --help
+./lgl --help
 
 # Check version
-lgl --version
+./lgl --version
+```
+
+
+### Windows (Powershell)
+
+```bash
+# Generate a single draw (default)
+.\lgl.exe
+
+# Generate 10 draws
+.\lgl.exe 10
+
+# Generate 5 draws and save to file
+.\lgl.exe 5 draws.txt
+
+# View help
+.\lgl.exe --help
+
+# Check version
+.\lgl.exe --version
 ```
 
 ### Command-line Arguments
